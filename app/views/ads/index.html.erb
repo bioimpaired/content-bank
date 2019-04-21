@@ -1,26 +1,72 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Ads</h1>
+<h3>All Ads</h3>
+
+<%= link_to 'New Ad', new_ad_path %>
+<%= link_to 'New Country', new_country_path %>
+<%= link_to 'New Brand', new_brand_path %>
+
+<%= form_tag ads_path, :method => 'get' do %>
+  <%= collection_select(:filter_params, :country_id, Country.all, :id, :name, prompt: true) %>
+  <%= collection_select(:filter_params, :brand_id, Brand.all, :id, :name, prompt: true) %>
+  <%= submit_tag "filter" %>
+<% end %>
+
+<button type="button" class="content-button btn btn-primary">content preview</button>
+
+<div class="content-preview" style="width: 640px;">
+  <div class="d-flex flex-wrap">
+    <% @preview_ads.each do |ad| %>
+      <div class="m-1 preview-content-ad">
+        <% if ad.image.attached? %>
+          <%= image_tag ad.preview_image %>
+        <% end %>
+        <div><%= ad.title %></div>
+        <div><%= ad.brand.name %></div>
+        <td><%= ad.country.name %></td>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Title</th>
       <th>Brand</th>
       <th>Country</th>
-      <th>Image</th>
+      <th>Order</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
+  <tbody class="sortable">
+    <% @preview_ads.each do |ad| %>
+      <tr class="list-content-preview">
+        <% if ad.image.attached? %>
+          <td><%= image_tag ad.thumbnail %></td>
+        <% end %>
+        <td><%= link_to ad.title, ad %></td>
+        <td><%= ad.brand.name %></td>
+        <td><%= ad.country.name %></td>
+        <td class="sort-drop-down">
+          <%= select_tag(ad.id, options_for_select([["Select a Position", ""], [1, 1], [2, 2], [3,3], [4,4], [5,5], [6,6]]))%>
+        </td>
+        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
+        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
     <% @ads.each do |ad| %>
       <tr>
-        <td><%= ad.title %></td>
-        <td style="width:80px; height:auto"><%= image_tag(ad.image, style:"width:100%") %></td>
-        <td><%= ad.brand_id %></td>
-        <td><%= ad.country_id %></td>
-        <td><%= link_to 'Show', ad %></td>
+        <% if ad.image.attached? %>
+          <td><%= image_tag ad.thumbnail %></td>
+        <% end %>
+        <td><%= link_to ad.title, ad %></td>
+        <td><%= ad.brand.name %></td>
+        <td><%= ad.country.name %></td>
+        <td class="sort-drop-down">
+          <%= select_tag(ad.id, options_for_select([["Select a Position", ""], [1, 1], [2, 2], [3,3], [4,4], [5,5], [6,6]]))%>
+        </td>
         <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
         <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -30,4 +76,3 @@
 
 <br>
 
-<%= link_to 'New Ad', new_ad_path %>
