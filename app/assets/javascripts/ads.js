@@ -17,5 +17,10 @@ document.addEventListener("turbolinks:load", () => {
     e.preventDefault();
     $(".content-preview").toggle("slow");
     $(".list-content-preview").toggle("slow");
+
+    var text = $("#toggle-preview-button").text();
+    $("#toggle-preview-button").text(
+      text == "Hide Preview" ? "Show Preview" : "Hide Preview"
+    );
   });
 });

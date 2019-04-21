@@ -27,8 +27,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
+
+# remove this?
 gem 'jquery-ui-rails'
 gem 'rails_sortable'
+# remove this
+
 gem 'bootstrap'
 
 # gem 'active_storage_validations'

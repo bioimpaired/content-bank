@@ -7,16 +7,15 @@
 
 <p>
   <strong>Brand:</strong>
-  <%= @ad.brand_id %>
+  <%= @ad.brand.name %>
 </p>
 
 <p>
   <strong>Country:</strong>
-  <%= @ad.country_id %>
+  <%= @ad.country.name %>
 </p>
 
 <p>
-  <strong>Image:</strong>
   <% if @ad.image.attached? %>
     <%= image_tag @ad.preview_image %>
   <% end %>

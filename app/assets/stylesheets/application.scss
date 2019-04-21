@@ -2,6 +2,12 @@
 
 .content-preview {
   margin: 0 auto;
+  padding: 20px;
+  width: 668px;
+}
+
+.content-preview-body {
+  width: 640px;
 }
 
 .list-content-preview {
@@ -11,4 +17,13 @@
 .preview-content-ad {
   width: 200px;
   margin: 1px;
+}
+
+.margin-filter {
+  margin: 10px;
+}
+
+.form-sizing {
+  width: 300px;
+  margin: 0 auto;
 }
