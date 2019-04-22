@@ -7,7 +7,7 @@
 <div class="content-preview border rounded">
   <div class="d-flex flex-wrap">
     <% @preview_ads.each do |ad| %>
-      <div class="m-1 preview-content-ad">
+      <div class="m-1 preview-content-ad pointer">
         <% if ad.image.attached? %>
           <%= image_tag ad.preview_image %>
         <% end %>
