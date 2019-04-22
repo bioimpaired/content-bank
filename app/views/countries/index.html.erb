@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Countries</h3>
+
+<div class="m-4 clearfix">
+  <span class="float-left">
+    <%= link_to 'New Country', new_country_path, class: 'btn btn-link btn-light' %>
+    <%= link_to 'All Ads', ads_path, class: 'btn btn-link btn-light' %>
+    <%= link_to 'All Brands', brands_path, class: 'btn btn-link btn-light' %>
+  </span>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |country| %>
+      <tr>
+        <td><%= link_to country.name, country %></td>
+        <td>
+          <%= link_to 'Edit', edit_country_path(country) %>
+          <%= link_to 'Delete', country, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

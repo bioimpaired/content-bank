@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ad.title %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @ad.brand.name %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @ad.country.name %>
+</p>
+
+<p>
+  <% if @ad.image.attached? %>
+    <%= image_tag @ad.preview_image %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<%= link_to 'Back', ads_path %>
