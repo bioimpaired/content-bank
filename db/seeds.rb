@@ -50,7 +50,7 @@ csv.each do |row|
   # grab active record obj
   country = Country.find_by(name: row['country'])
   brand = Brand.find_by(name: row['brand'])
-  ad = Ad.create(title: row['title'], country_id: country.id, brand_id: brand.id)
+  ad = Ad.new(title: row['title'], country_id: country.id, brand_id: brand.id)
   
   # attach image to ad
   imageUrl = row['img']
@@ -62,6 +62,7 @@ csv.each do |row|
   # attach image
   p 'attaching ' + filename
   ad.image.attach(io: file, filename: filename)
+  ad.save
 end
 
 puts "There are now #{Ad.count} rows in the Ad table"
